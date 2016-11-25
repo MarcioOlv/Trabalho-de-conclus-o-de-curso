@@ -1,0 +1,54 @@
+﻿@model PagedList.IPagedList<Gerenciador_de_Consultas_Médicas.Models.agenda>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Agenda</h2>
+
+<p>
+    @Html.ActionLink("Criar nova agenda", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().horarioAtendimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().horarioAgendado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horarioAtendimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horarioAgendado)
+        </td>
+        <td>
+            @if (item.horarioAgendado == null) {
+                @Html.ActionLink("Editar", "Edit", new { id = item.idAgenda })
+            }
+            | @Html.ActionLink("Detalhes", "Details", new { id=item.idAgenda }) |
+            @if (item.horarioAgendado == null)
+            {
+                @Html.ActionLink("Excluir", "Delete", new { id = item.idAgenda })
+            }
+        </td>
+    </tr>
+}
+</table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { idMedico = ViewBag.idMedico ,page }))

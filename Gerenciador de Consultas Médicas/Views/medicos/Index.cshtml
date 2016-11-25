@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Gerenciador_de_Consultas_Médicas.Models.medicos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Médicos</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.especialidades.ds_especialidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clinicas.nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.preco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.especialidades.ds_especialidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clinicas.nome)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idMedico }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.idMedico }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.idMedico }) |
+            @Html.ActionLink("Agenda", "criarAgenda", new { id = item.idMedico })
+        </td>
+    </tr>
+}
+
+</table>

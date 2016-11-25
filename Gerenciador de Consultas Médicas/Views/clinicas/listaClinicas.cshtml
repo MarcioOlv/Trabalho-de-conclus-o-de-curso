@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Gerenciador_de_Consultas_Médicas.Models.ClinicasPacMedViewModel>
+
+@{
+    ViewBag.Title = "listaClinicas";
+}
+
+<h2>Clínicas</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nomeClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enderecoClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bairroClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cidadeClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emailClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefoneClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hrAtendimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.especialidades)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.convenios)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeClinica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enderecoClinica) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bairroClinica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cidadeClinica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estadoClinica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emailClinica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoneClinica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hrAtendimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.especialidades)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.convenios)
+            </td>
+            <td>
+                <a href="javascript:chamaMarcacaoEndereco('@item.enderecoClinica', 
+                  '@item.bairroClinica','@item.cidadeClinica');">Verificar rota</a> |
+                @*<a href="javascript:chamaMarcacaoEndereco();">Verificar rota</a>*@
+                @Html.ActionLink("Pesquisar médicos", "pesquisarMedicos", new { id = item.idClinica })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<div id="mapa" style="width: 900px; height: 500px">
+</div>

@@ -1,0 +1,54 @@
+﻿@model Gerenciador_de_Consultas_Médicas.Models.medicos
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>medicos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.preco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.preco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.especialidades.ds_especialidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.especialidades.ds_especialidade)
+        </dd>
+     
+    </dl>
+
+</div>
+<div>
+    @{Html.RenderAction("Index", "avaliacoes", new { idMedico = Model.idMedico });}
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idMedico }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

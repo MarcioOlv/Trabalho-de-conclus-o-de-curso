@@ -1,0 +1,54 @@
+﻿@model PagedList.IPagedList<Gerenciador_de_Consultas_Médicas.Models.perfilMedicoViewModel>
+@using PagedList.Mvc
+
+@{
+    Layout = null;
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-body" style="text-align:center">
+        Média: @Html.Raw(ViewBag.media)
+    </div>    
+</div>
+
+<table class="table">    
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().notas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().comentarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().dataAvaliacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().nomePacAvaliador)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.notas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataAvaliacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomePacAvaliador)
+        </td>
+    </tr>
+}
+</table>
+
+<br />
+<div id="avaliacoes">
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { idMedico = ViewBag.idMedico, page }))
+</div>

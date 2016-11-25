@@ -1,0 +1,31 @@
+﻿@{
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+
+    string layout = "";
+    string usuario = Convert.ToString(Session["tipoUsuario"]);
+    int adm = Convert.ToInt16(Session["adm"]);
+
+    if (usuario != "")
+    {
+        if (usuario == "paciente")
+        {
+            layout = "~/Views/Shared/_LayoutPaciente.cshtml";
+        }
+        else
+        {
+            if (adm == 1)
+            {
+                layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+            }
+            else
+            {
+                layout = "~/Views/Shared/_LayoutMedico.cshtml";
+            }
+        }
+    }
+    else
+    {
+        layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    Layout = layout;
+}

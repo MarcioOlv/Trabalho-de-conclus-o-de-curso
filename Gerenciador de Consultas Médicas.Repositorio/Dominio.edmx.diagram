@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1709990ae5464ac6814c46cc9c139f4a" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="Dominio.pacientes" Width="1.5" PointX="1" PointY="0.5" />
+        <EntityTypeShape EntityType="Dominio.medicos" Width="1.5" PointX="7.125" PointY="0.75" />
+        <EntityTypeShape EntityType="Dominio.clinicas" Width="1.5" PointX="6.875" PointY="4.375" />
+        <EntityTypeShape EntityType="Dominio.pagamentos" Width="1.5" PointX="1.375" PointY="4.875" />
+        <EntityTypeShape EntityType="Dominio.convenios" Width="1.5" PointX="4.5" PointY="5.125" />
+        <EntityTypeShape EntityType="Dominio.consultas" Width="1.75" PointX="4" PointY="1.125" />
+        <EntityTypeShape EntityType="Dominio.clinicas_has_medicos" Width="1.5" PointX="9.5" PointY="3.75" />
+        <AssociationConnector Association="Dominio.pacientesconsultas" />
+        <AssociationConnector Association="Dominio.consultaspagamentos" ></AssociationConnector>
+        <AssociationConnector Association="Dominio.conveniospagamentos" />
+        <AssociationConnector Association="Dominio.medicosconsultas" />
+        <AssociationConnector Association="Dominio.clinicasconsultas" />
+        <AssociationConnector Association="Dominio.medicosclinicas_has_medicos" />
+        <AssociationConnector Association="Dominio.clinicasclinicas_has_medicos" />
+        <EntityTypeShape EntityType="Dominio.especialidades" Width="1.5" PointX="10.5" PointY="1.625" />
+        <AssociationConnector Association="Dominio.especialidadesmedicos" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

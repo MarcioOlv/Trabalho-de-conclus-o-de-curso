@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DominioStoreContainer" CdmEntityContainer="DominioContainer">
+    <EntitySetMapping Name="pacientesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.pacientes)">
+        <MappingFragment StoreEntitySet="pacientesSet">
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="celular" ColumnName="celular" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="convenios_idConvenio" ColumnName="convenios_idConvenio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="medicosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.medicos)">
+        <MappingFragment StoreEntitySet="medicosSet">
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="preco" ColumnName="preco" />
+          <ScalarProperty Name="situacao" ColumnName="situacao" />
+          <ScalarProperty Name="especialidades_idEspecialidade" ColumnName="especialidades_idEspecialidade" />
+          <ScalarProperty Name="clinicas_idClinica" ColumnName="clinicas_idClinica" />
+          <ScalarProperty Name="adm" ColumnName="adm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.clinicas)">
+        <MappingFragment StoreEntitySet="clinicasSet">
+          <ScalarProperty Name="idClinica" ColumnName="idClinica" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="estadoClinica" ColumnName="estadoClinica" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="hrAtendimento" ColumnName="hrAtendimento" />
+          <ScalarProperty Name="duracaoConsultas" ColumnName="duracaoConsultas" />
+          <ScalarProperty Name="especialidades" ColumnName="especialidades" />
+          <ScalarProperty Name="convenios" ColumnName="convenios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pagamentosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.pagamentos)">
+        <MappingFragment StoreEntitySet="pagamentosSet">
+          <ScalarProperty Name="idPagamento" ColumnName="idPagamento" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="descontos" ColumnName="descontos" />
+          <ScalarProperty Name="consultas_idConsulta" ColumnName="consultas_idConsulta" />
+          <ScalarProperty Name="contasBancarias_idContasBancarias" ColumnName="contasBancarias_idContasBancarias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conveniosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.convenios)">
+        <MappingFragment StoreEntitySet="conveniosSet">
+          <ScalarProperty Name="idConvenio" ColumnName="idConvenio" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="consultasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.consultas)">
+        <MappingFragment StoreEntitySet="consultasSet">
+          <ScalarProperty Name="idConsulta" ColumnName="idConsulta" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="horario" ColumnName="horario" />
+          <ScalarProperty Name="check_in" ColumnName="check_in" />
+          <ScalarProperty Name="check_out" ColumnName="check_out" />
+          <ScalarProperty Name="pacientes_idPaciente" ColumnName="pacientes_idPaciente" />
+          <ScalarProperty Name="medicos_idMedico" ColumnName="medicos_idMedico" />
+          <ScalarProperty Name="clinicas_idClinica" ColumnName="clinicas_idClinica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="especialidadesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.especialidades)">
+        <MappingFragment StoreEntitySet="especialidadesSet">
+          <ScalarProperty Name="idEspecialidade" ColumnName="idEspecialidade" />
+          <ScalarProperty Name="ds_especialidade" ColumnName="ds_especialidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="avaliacoes">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.avaliacoes)">
+        <MappingFragment StoreEntitySet="avaliacoes">
+          <ScalarProperty Name="idAvaliacao" ColumnName="idAvaliacao" />
+          <ScalarProperty Name="notas" ColumnName="notas" />
+          <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+          <ScalarProperty Name="media" ColumnName="media" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="medicos_idMedico" ColumnName="medicos_idMedico" />
+          <ScalarProperty Name="pacientes_idPaciente" ColumnName="pacientes_idPaciente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contasBancariasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.contasBancarias)">
+        <MappingFragment StoreEntitySet="contasBancariasSet">
+          <ScalarProperty Name="idContasBancarias" ColumnName="idContasBancarias" />
+          <ScalarProperty Name="agencia" ColumnName="agencia" />
+          <ScalarProperty Name="digitoAgencia" ColumnName="digitoAgencia" />
+          <ScalarProperty Name="cedente" ColumnName="cedente" />
+          <ScalarProperty Name="digitoCedente" ColumnName="digitoCedente" />
+          <ScalarProperty Name="carteira" ColumnName="carteira" />
+          <ScalarProperty Name="contrato" ColumnName="contrato" />
+          <ScalarProperty Name="convenio" ColumnName="convenio" />
+          <ScalarProperty Name="clinicas_idClinica" ColumnName="clinicas_idClinica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agendaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.agenda)">
+        <MappingFragment StoreEntitySet="agendaSet">
+          <ScalarProperty Name="idAgenda" ColumnName="idAgenda" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="horarioAtendimento" ColumnName="horarioAtendimento" />
+          <ScalarProperty Name="horarioAgendado" ColumnName="horarioAgendado" />
+          <ScalarProperty Name="medicos_idMedico" ColumnName="medicos_idMedico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

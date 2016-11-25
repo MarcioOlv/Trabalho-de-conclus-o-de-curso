@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Gerenciador_de_Consultas_Médicas.Models.clinicas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cnpj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.complemento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoClinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hrAtendimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duracaoConsultas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.especialidades)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.convenios)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cnpj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.complemento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bairro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estadoClinica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hrAtendimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duracaoConsultas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.especialidades)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.convenios)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idClinica }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idClinica }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idClinica })
+        </td>
+    </tr>
+}
+
+</table>

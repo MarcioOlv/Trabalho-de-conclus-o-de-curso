@@ -1,0 +1,13 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Gerenciador_de_Consultas_Médicas.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnDB" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;&amp;lt;add name="ConnDB" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=&amp;amp;quot;|DataDirectory|\aspnet-Gerenciador de Consultas Médicas-20160710120956.mdf&amp;amp;quot;;Initial Catalog=&amp;amp;quot;aspnet-Gerenciador de Consultas Médicas-20160710120956&amp;amp;quot;;Integrated Security=True" providerName="System.Data.SqlClient" /&amp;gt;&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">&lt;add name="ConnDB" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=&amp;quot;|DataDirectory|\aspnet-Gerenciador de Consultas Médicas-20160710120956.mdf&amp;quot;;Initial Catalog=&amp;quot;aspnet-Gerenciador de Consultas Médicas-20160710120956&amp;quot;;Integrated Security=True" providerName="System.Data.SqlClient" /&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

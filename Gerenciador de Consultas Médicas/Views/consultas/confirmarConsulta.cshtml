@@ -1,0 +1,27 @@
+﻿@model Gerenciador_de_Consultas_Médicas.Models.infParaAgendaEConsultaViewModel
+
+@{
+    ViewBag.Title = "confirmarConsulta";
+}
+
+<h2>Confirmar consulta</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <h4>
+            Deseja confirmar o agendamento da consulta com o(a) médico(a) @Html.DisplayFor(model => model.nomeMedico)
+            para o dia @Html.DisplayFor(model => model.data) às @Html.DisplayFor(model => model.horarios)?
+        </h4>
+    </div>
+    <div class="form-group">
+        @Html.ActionLink("Confirmar", "confirmarDados", new
+        {
+            data = Model.data,
+            horario = Model.horarios,
+            cli = Model.idClinica,
+            med = Model.idMedico
+        }) 
+        <a href="javascript:void(0);" onclick="history.go(-1);">Cancelar</a>     
+    </div>
+}

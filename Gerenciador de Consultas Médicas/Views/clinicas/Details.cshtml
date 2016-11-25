@@ -1,0 +1,138 @@
+﻿@model Gerenciador_de_Consultas_Médicas.Models.clinicas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>clinicas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.complemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.complemento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bairro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bairro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estadoClinica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoClinica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hrAtendimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hrAtendimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duracaoConsultas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duracaoConsultas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.especialidades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.especialidades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.convenios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.convenios)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idClinica }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

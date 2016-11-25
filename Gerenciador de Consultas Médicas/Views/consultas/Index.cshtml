@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Gerenciador_de_Consultas_Médicas.Models.consultas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Consultas</h2>
+
+<p>
+    @Html.ActionLink("Marcar consulta", "pesquisarClinicas", "clinicas")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.clinicas.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.medicos.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horario)
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clinicas.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.medicos.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horario)
+        </td>
+        <td>
+            @Html.ActionLink("Check-in", "checkIn", "consultas", new
+            {
+                @class = "checkIn",
+                idConsulta = item.idConsulta,
+                idMedico = item.medicos_idMedico,
+                data = item.data,
+                hora = item.horario
+            },
+           new { @class = "btn btn-primary btn-sm", id = "checkIn", onclick = "habilitaCheckOut();" })
+        </td>
+        <td>
+            @Html.ActionLink("Check-out", "checkOut", "consultas", new
+            {
+                idConsulta = item.idConsulta,
+                idMedico = item.medicos_idMedico,
+                data = item.data,
+                hora = item.horario
+            },
+            new { @class = "btn btn-primary btn-sm", id = "checkOut" })
+        </td>
+
+        <td>
+            @Html.ActionLink("Reagendar consulta", "reagendar", new
+            {
+                id = item.idConsulta,
+                idMed = item.medicos_idMedico,
+                hora = item.horario,
+                data = item.data
+            }) |
+                 @Html.ActionLink("Cancelar consulta", "Delete", new
+            {
+                id = item.idConsulta,
+                idMed = item.medicos_idMedico,
+                hora = item.horario,
+                data = item.data
+            })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,33 @@
+﻿@model Gerenciador_de_Consultas_Médicas.Models.ClinicasPacMedViewModel
+
+@{
+    ViewBag.Title = "pesquisarClinicas";
+}
+
+<h2>Pesquisar Clínicas</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <h4>Especialidade</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.especialidades, "Especialidade", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("especialidades", (SelectList) ViewBag.especialidades_idEspecialidade, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.especialidades, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Pesquisar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

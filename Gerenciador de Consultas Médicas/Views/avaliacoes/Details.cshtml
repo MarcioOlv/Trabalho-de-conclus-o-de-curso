@@ -1,0 +1,58 @@
+﻿@model Gerenciador_de_Consultas_Médicas.Models.avaliacoes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>avaliacoes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.notas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.notas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.media)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.media)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.medicos.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.medicos.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idAvaliacao }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

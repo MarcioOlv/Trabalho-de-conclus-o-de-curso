@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Session["nomeUsuario"] != null)
+{
+    if (Convert.ToString(Session["tipoUsuario"]) == "medico" || Convert.ToString(Session["tipoUsuario"]) == "Adm")
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Olá, " + Session["nomeUsuario"] + "!", "Details", "medicos")
+            </li>
+            <li>
+                @Html.ActionLink("Sair", "Sair", "Account")
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Olá " + Session["nomeUsuario"] + "!", "Details", "pacientes")
+            </li>
+            <li>
+                @Html.ActionLink("Sair", "Sair", "Account")
+            </li>
+        </ul>
+    }
+
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Cadastre sua conta", "Create", "pacientes", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Cadastre seu consultório", "Create", "clinicas", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    </ul>
+}

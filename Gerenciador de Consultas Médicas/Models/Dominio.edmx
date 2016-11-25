@@ -1,0 +1,860 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Dominio.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DominioStoreContainer">
+    <EntitySet Name="pacientesSet" EntityType="Dominio.Store.pacientesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="medicosSet" EntityType="Dominio.Store.medicosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="clinicasSet" EntityType="Dominio.Store.clinicasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="pagamentosSet" EntityType="Dominio.Store.pagamentosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="conveniosSet" EntityType="Dominio.Store.conveniosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="consultasSet" EntityType="Dominio.Store.consultasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="especialidadesSet" EntityType="Dominio.Store.especialidadesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="avaliacoes" EntityType="Dominio.Store.avaliacoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="contasBancariasSet" EntityType="Dominio.Store.contasBancariasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="Dominio.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="agendaSet" EntityType="Dominio.Store.agendaSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="pacientesconsultas" Association="Dominio.Store.pacientesconsultas">
+      <End Role="pacientes" EntitySet="pacientesSet" />
+      <End Role="consultas" EntitySet="consultasSet" />
+    </AssociationSet>
+    <AssociationSet Name="conveniospacientes" Association="Dominio.Store.conveniospacientes">
+      <End Role="convenios" EntitySet="conveniosSet" />
+      <End Role="pacientes" EntitySet="pacientesSet" />
+    </AssociationSet>
+    <AssociationSet Name="medicosconsultas" Association="Dominio.Store.medicosconsultas">
+      <End Role="medicos" EntitySet="medicosSet" />
+      <End Role="consultas" EntitySet="consultasSet" />
+    </AssociationSet>
+    <AssociationSet Name="medicosavaliacoes" Association="Dominio.Store.medicosavaliacoes">
+      <End Role="medicos" EntitySet="medicosSet" />
+      <End Role="avaliacoes" EntitySet="avaliacoes" />
+    </AssociationSet>
+    <AssociationSet Name="especialidadesmedicos" Association="Dominio.Store.especialidadesmedicos">
+      <End Role="especialidades" EntitySet="especialidadesSet" />
+      <End Role="medicos" EntitySet="medicosSet" />
+    </AssociationSet>
+    <AssociationSet Name="clinicascontasBancarias" Association="Dominio.Store.clinicascontasBancarias">
+      <End Role="clinicas" EntitySet="clinicasSet" />
+      <End Role="contasBancarias" EntitySet="contasBancariasSet" />
+    </AssociationSet>
+    <AssociationSet Name="clinicasconsultas" Association="Dominio.Store.clinicasconsultas">
+      <End Role="clinicas" EntitySet="clinicasSet" />
+      <End Role="consultas" EntitySet="consultasSet" />
+    </AssociationSet>
+    <AssociationSet Name="contasBancariaspagamentos" Association="Dominio.Store.contasBancariaspagamentos">
+      <End Role="contasBancarias" EntitySet="contasBancariasSet" />
+      <End Role="pagamentos" EntitySet="pagamentosSet" />
+    </AssociationSet>
+    <AssociationSet Name="clinicasmedicos" Association="Dominio.Store.clinicasmedicos">
+      <End Role="clinicas" EntitySet="clinicasSet" />
+      <End Role="medicos" EntitySet="medicosSet" />
+    </AssociationSet>
+    <AssociationSet Name="medicosagenda" Association="Dominio.Store.medicosagenda">
+      <End Role="medicos" EntitySet="medicosSet" />
+      <End Role="agenda" EntitySet="agendaSet" />
+    </AssociationSet>
+    <AssociationSet Name="pacientesavaliacoes" Association="Dominio.Store.pacientesavaliacoes">
+      <End Role="pacientes" EntitySet="pacientesSet" />
+      <End Role="avaliacoes" EntitySet="avaliacoes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="pacientesSet">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="idPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="cpf" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="endereco" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="bairro" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cidade" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="estado" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="telefone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="celular" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="60" />
+    <Property Name="senha" Type="nvarchar" Nullable="false" MaxLength="18" />
+    <Property Name="convenios_idConvenio" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="medicosSet">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="60" />
+    <Property Name="senha" Type="nvarchar" Nullable="false" MaxLength="18" />
+    <Property Name="preco" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="situacao" Type="smallint" Nullable="false" />
+    <Property Name="especialidades_idEspecialidade" Type="int" Nullable="false" />
+    <Property Name="clinicas_idClinica" Type="int" Nullable="false" />
+    <Property Name="adm" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="clinicasSet">
+    <Key>
+      <PropertyRef Name="idClinica" />
+    </Key>
+    <Property Name="idClinica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="cnpj" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="endereco" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="complemento" Type="nvarchar" Nullable="true" MaxLength="40" />
+    <Property Name="bairro" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="cep" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cidade" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="estadoClinica" Type="varchar" Nullable="true" MaxLength="25" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="60" />
+    <Property Name="telefone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fax" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="hrAtendimento" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="duracaoConsultas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="especialidades" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="convenios" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="pagamentosSet">
+    <Key>
+      <PropertyRef Name="idPagamento" />
+    </Key>
+    <Property Name="idPagamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="valor" Type="float" Nullable="false" />
+    <Property Name="data" Type="datetime" Nullable="false" />
+    <Property Name="descontos" Type="float" Nullable="true" />
+    <Property Name="consultas_idConsulta" Type="int" Nullable="false" />
+    <Property Name="contasBancarias_idContasBancarias" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="conveniosSet">
+    <Key>
+      <PropertyRef Name="idConvenio" />
+    </Key>
+    <Property Name="idConvenio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descricao" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="consultasSet">
+    <Key>
+      <PropertyRef Name="idConsulta" />
+    </Key>
+    <Property Name="idConsulta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="data" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="horario" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="check_in" Type="int" Nullable="true" />
+    <Property Name="check_out" Type="int" Nullable="true" />
+    <Property Name="pacientes_idPaciente" Type="int" Nullable="false" />
+    <Property Name="medicos_idMedico" Type="int" Nullable="false" />
+    <Property Name="clinicas_idClinica" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="especialidadesSet">
+    <Key>
+      <PropertyRef Name="idEspecialidade" />
+    </Key>
+    <Property Name="idEspecialidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ds_especialidade" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="avaliacoes">
+    <Key>
+      <PropertyRef Name="idAvaliacao" />
+    </Key>
+    <Property Name="idAvaliacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="notas" Type="int" Nullable="false" />
+    <Property Name="comentarios" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="media" Type="float" Nullable="false" />
+    <Property Name="data" Type="datetime" Nullable="false" />
+    <Property Name="medicos_idMedico" Type="int" Nullable="false" />
+    <Property Name="pacientes_idPaciente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="contasBancariasSet">
+    <Key>
+      <PropertyRef Name="idContasBancarias" />
+    </Key>
+    <Property Name="idContasBancarias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="agencia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="digitoAgencia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cedente" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="digitoCedente" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="carteira" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="contrato" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="convenio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="clinicas_idClinica" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="agendaSet">
+    <Key>
+      <PropertyRef Name="idAgenda" />
+    </Key>
+    <Property Name="idAgenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="data" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="horarioAtendimento" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="horarioAgendado" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="medicos_idMedico" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="pacientesconsultas">
+    <End Role="pacientes" Type="Dominio.Store.pacientesSet" Multiplicity="1" />
+    <End Role="consultas" Type="Dominio.Store.consultasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="consultas">
+        <PropertyRef Name="pacientes_idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="conveniospacientes">
+    <End Role="convenios" Type="Dominio.Store.conveniosSet" Multiplicity="1" />
+    <End Role="pacientes" Type="Dominio.Store.pacientesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="convenios">
+        <PropertyRef Name="idConvenio" />
+      </Principal>
+      <Dependent Role="pacientes">
+        <PropertyRef Name="convenios_idConvenio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="medicosconsultas">
+    <End Role="medicos" Type="Dominio.Store.medicosSet" Multiplicity="1" />
+    <End Role="consultas" Type="Dominio.Store.consultasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="consultas">
+        <PropertyRef Name="medicos_idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="medicosavaliacoes">
+    <End Role="medicos" Type="Dominio.Store.medicosSet" Multiplicity="1" />
+    <End Role="avaliacoes" Type="Dominio.Store.avaliacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="avaliacoes">
+        <PropertyRef Name="medicos_idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="especialidadesmedicos">
+    <End Role="especialidades" Type="Dominio.Store.especialidadesSet" Multiplicity="1" />
+    <End Role="medicos" Type="Dominio.Store.medicosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="especialidades">
+        <PropertyRef Name="idEspecialidade" />
+      </Principal>
+      <Dependent Role="medicos">
+        <PropertyRef Name="especialidades_idEspecialidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="clinicascontasBancarias">
+    <End Role="clinicas" Type="Dominio.Store.clinicasSet" Multiplicity="1" />
+    <End Role="contasBancarias" Type="Dominio.Store.contasBancariasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clinicas">
+        <PropertyRef Name="idClinica" />
+      </Principal>
+      <Dependent Role="contasBancarias">
+        <PropertyRef Name="clinicas_idClinica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="clinicasconsultas">
+    <End Role="clinicas" Type="Dominio.Store.clinicasSet" Multiplicity="1" />
+    <End Role="consultas" Type="Dominio.Store.consultasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clinicas">
+        <PropertyRef Name="idClinica" />
+      </Principal>
+      <Dependent Role="consultas">
+        <PropertyRef Name="clinicas_idClinica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="contasBancariaspagamentos">
+    <End Role="contasBancarias" Type="Dominio.Store.contasBancariasSet" Multiplicity="1" />
+    <End Role="pagamentos" Type="Dominio.Store.pagamentosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contasBancarias">
+        <PropertyRef Name="idContasBancarias" />
+      </Principal>
+      <Dependent Role="pagamentos">
+        <PropertyRef Name="contasBancarias_idContasBancarias" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="clinicasmedicos">
+    <End Role="clinicas" Type="Dominio.Store.clinicasSet" Multiplicity="1" />
+    <End Role="medicos" Type="Dominio.Store.medicosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clinicas">
+        <PropertyRef Name="idClinica" />
+      </Principal>
+      <Dependent Role="medicos">
+        <PropertyRef Name="clinicas_idClinica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="medicosagenda">
+    <End Role="medicos" Type="Dominio.Store.medicosSet" Multiplicity="1" />
+    <End Role="agenda" Type="Dominio.Store.agendaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="agenda">
+        <PropertyRef Name="medicos_idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pacientesavaliacoes">
+    <End Role="pacientes" Type="Dominio.Store.pacientesSet" Multiplicity="1" />
+    <End Role="avaliacoes" Type="Dominio.Store.avaliacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="avaliacoes">
+        <PropertyRef Name="pacientes_idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Dominio" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DominioContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="pacientesSet" EntityType="Dominio.pacientes" />
+          <EntitySet Name="medicosSet" EntityType="Dominio.medicos" />
+          <EntitySet Name="clinicasSet" EntityType="Dominio.clinicas" />
+          <EntitySet Name="pagamentosSet" EntityType="Dominio.pagamentos" />
+          <EntitySet Name="conveniosSet" EntityType="Dominio.convenios" />
+          <EntitySet Name="consultasSet" EntityType="Dominio.consultas" />
+          <EntitySet Name="especialidadesSet" EntityType="Dominio.especialidades" />
+          <EntitySet Name="avaliacoes" EntityType="Dominio.avaliacoes" />
+          <EntitySet Name="contasBancariasSet" EntityType="Dominio.contasBancarias" />
+          <AssociationSet Name="pacientesconsultas" Association="Dominio.pacientesconsultas">
+            <End Role="pacientes" EntitySet="pacientesSet" />
+            <End Role="consultas" EntitySet="consultasSet" />
+          </AssociationSet>
+          <AssociationSet Name="conveniospacientes" Association="Dominio.conveniospacientes">
+            <End Role="convenios" EntitySet="conveniosSet" />
+            <End Role="pacientes" EntitySet="pacientesSet" />
+          </AssociationSet>
+          <AssociationSet Name="medicosconsultas" Association="Dominio.medicosconsultas">
+            <End Role="medicos" EntitySet="medicosSet" />
+            <End Role="consultas" EntitySet="consultasSet" />
+          </AssociationSet>
+          <AssociationSet Name="medicosavaliacoes" Association="Dominio.medicosavaliacoes">
+            <End Role="medicos" EntitySet="medicosSet" />
+            <End Role="avaliacoes" EntitySet="avaliacoes" />
+          </AssociationSet>
+          <AssociationSet Name="especialidadesmedicos" Association="Dominio.especialidadesmedicos">
+            <End Role="especialidades" EntitySet="especialidadesSet" />
+            <End Role="medicos" EntitySet="medicosSet" />
+          </AssociationSet>
+          <AssociationSet Name="clinicascontasBancarias" Association="Dominio.clinicascontasBancarias">
+            <End Role="clinicas" EntitySet="clinicasSet" />
+            <End Role="contasBancarias" EntitySet="contasBancariasSet" />
+          </AssociationSet>
+          <AssociationSet Name="clinicasconsultas" Association="Dominio.clinicasconsultas">
+            <End Role="clinicas" EntitySet="clinicasSet" />
+            <End Role="consultas" EntitySet="consultasSet" />
+          </AssociationSet>
+          <AssociationSet Name="contasBancariaspagamentos" Association="Dominio.contasBancariaspagamentos">
+            <End Role="contasBancarias" EntitySet="contasBancariasSet" />
+            <End Role="pagamentos" EntitySet="pagamentosSet" />
+          </AssociationSet>
+          <AssociationSet Name="clinicasmedicos" Association="Dominio.clinicasmedicos">
+            <End Role="clinicas" EntitySet="clinicasSet" />
+            <End Role="medicos" EntitySet="medicosSet" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="Dominio.sysdiagrams" />
+          <EntitySet Name="agendaSet" EntityType="Dominio.agenda" />
+          <AssociationSet Name="medicosagenda" Association="Dominio.medicosagenda">
+            <End Role="medicos" EntitySet="medicosSet" />
+            <End Role="agenda" EntitySet="agendaSet" />
+          </AssociationSet>
+          <AssociationSet Name="pacientesavaliacoes" Association="Dominio.pacientesavaliacoes">
+            <End Role="pacientes" EntitySet="pacientesSet" />
+            <End Role="avaliacoes" EntitySet="avaliacoes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="pacientes">
+          <Key>
+            <PropertyRef Name="idPaciente" />
+          </Key>
+          <Property Name="idPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ConcurrencyMode="Fixed" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="cpf" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="endereco" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="bairro" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="cidade" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="telefone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="celular" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="senha" Type="String" Nullable="false" MaxLength="18" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="consultas" Relationship="Dominio.pacientesconsultas" FromRole="pacientes" ToRole="consultas" />
+          <NavigationProperty Name="convenios" Relationship="Dominio.conveniospacientes" FromRole="pacientes" ToRole="convenios" />
+          <Property Name="convenios_idConvenio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="avaliacoes" Relationship="Dominio.pacientesavaliacoes" FromRole="pacientes" ToRole="avaliacoes" />
+        </EntityType>
+        <EntityType Name="medicos">
+          <Key>
+            <PropertyRef Name="idMedico" />
+          </Key>
+          <Property Name="idMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="senha" Type="String" Nullable="false" MaxLength="18" Unicode="true" FixedLength="false" />
+          <Property Name="preco" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="situacao" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="consultas" Relationship="Dominio.medicosconsultas" FromRole="medicos" ToRole="consultas" />
+          <NavigationProperty Name="avaliacoes" Relationship="Dominio.medicosavaliacoes" FromRole="medicos" ToRole="avaliacoes" />
+          <NavigationProperty Name="especialidades" Relationship="Dominio.especialidadesmedicos" FromRole="medicos" ToRole="especialidades" />
+          <Property Name="especialidades_idEspecialidade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clinicas" Relationship="Dominio.clinicasmedicos" FromRole="medicos" ToRole="clinicas" />
+          <Property Name="clinicas_idClinica" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="agenda" Relationship="Dominio.medicosagenda" FromRole="medicos" ToRole="agenda" />
+          <Property Name="adm" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clinicas">
+          <Key>
+            <PropertyRef Name="idClinica" />
+          </Key>
+          <Property Name="idClinica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="cnpj" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="endereco" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="complemento" Type="String" Nullable="true" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="bairro" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="cep" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="cidade" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="estadoClinica" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="telefone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="fax" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hrAtendimento" Type="String" Nullable="true" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="duracaoConsultas" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="contasBancarias" Relationship="Dominio.clinicascontasBancarias" FromRole="clinicas" ToRole="contasBancarias" />
+          <NavigationProperty Name="consultas" Relationship="Dominio.clinicasconsultas" FromRole="clinicas" ToRole="consultas" />
+          <Property Name="especialidades" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="medicos" Relationship="Dominio.clinicasmedicos" FromRole="clinicas" ToRole="medicos" />
+          <Property Name="convenios" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="pagamentos">
+          <Key>
+            <PropertyRef Name="idPagamento" />
+          </Key>
+          <Property Name="idPagamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="valor" Type="Double" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="descontos" Type="Double" Nullable="true" />
+          <Property Name="consultas_idConsulta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="contasBancarias" Relationship="Dominio.contasBancariaspagamentos" FromRole="pagamentos" ToRole="contasBancarias" />
+          <Property Name="contasBancarias_idContasBancarias" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="convenios">
+          <Key>
+            <PropertyRef Name="idConvenio" />
+          </Key>
+          <Property Name="idConvenio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="pacientes" Relationship="Dominio.conveniospacientes" FromRole="convenios" ToRole="pacientes" />
+        </EntityType>
+        <EntityType Name="consultas">
+          <Key>
+            <PropertyRef Name="idConsulta" />
+          </Key>
+          <Property Name="idConsulta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="horario" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="check_in" Type="Int32" Nullable="true" />
+          <Property Name="check_out" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="pacientes" Relationship="Dominio.pacientesconsultas" FromRole="consultas" ToRole="pacientes" />
+          <Property Name="pacientes_idPaciente" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="medicos" Relationship="Dominio.medicosconsultas" FromRole="consultas" ToRole="medicos" />
+          <Property Name="medicos_idMedico" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clinicas" Relationship="Dominio.clinicasconsultas" FromRole="consultas" ToRole="clinicas" />
+          <Property Name="clinicas_idClinica" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="especialidades">
+          <Key>
+            <PropertyRef Name="idEspecialidade" />
+          </Key>
+          <Property Name="idEspecialidade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_especialidade" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="medicos" Relationship="Dominio.especialidadesmedicos" FromRole="especialidades" ToRole="medicos" />
+        </EntityType>
+        <EntityType Name="avaliacoes">
+          <Key>
+            <PropertyRef Name="idAvaliacao" />
+          </Key>
+          <Property Name="idAvaliacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="notas" Type="Int32" Nullable="false" />
+          <Property Name="comentarios" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="media" Type="Double" Nullable="false" />
+          <Property Name="data" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="medicos" Relationship="Dominio.medicosavaliacoes" FromRole="avaliacoes" ToRole="medicos" />
+          <Property Name="medicos_idMedico" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="pacientes" Relationship="Dominio.pacientesavaliacoes" FromRole="avaliacoes" ToRole="pacientes" />
+          <Property Name="pacientes_idPaciente" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+        </EntityType>
+        <EntityType Name="contasBancarias">
+          <Key>
+            <PropertyRef Name="idContasBancarias" />
+          </Key>
+          <Property Name="idContasBancarias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agencia" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="digitoAgencia" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="cedente" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="digitoCedente" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="carteira" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="contrato" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="convenio" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="clinicas" Relationship="Dominio.clinicascontasBancarias" FromRole="contasBancarias" ToRole="clinicas" />
+          <Property Name="clinicas_idClinica" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="pagamentos" Relationship="Dominio.contasBancariaspagamentos" FromRole="contasBancarias" ToRole="pagamentos" />
+        </EntityType>
+        <Association Name="pacientesconsultas">
+          <End Type="Dominio.pacientes" Role="pacientes" Multiplicity="1" />
+          <End Type="Dominio.consultas" Role="consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacientes">
+              <PropertyRef Name="idPaciente" />
+            </Principal>
+            <Dependent Role="consultas">
+              <PropertyRef Name="pacientes_idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="conveniospacientes">
+          <End Type="Dominio.convenios" Role="convenios" Multiplicity="1" />
+          <End Type="Dominio.pacientes" Role="pacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="convenios">
+              <PropertyRef Name="idConvenio" />
+            </Principal>
+            <Dependent Role="pacientes">
+              <PropertyRef Name="convenios_idConvenio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="medicosconsultas">
+          <End Type="Dominio.medicos" Role="medicos" Multiplicity="1" />
+          <End Type="Dominio.consultas" Role="consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="medicos">
+              <PropertyRef Name="idMedico" />
+            </Principal>
+            <Dependent Role="consultas">
+              <PropertyRef Name="medicos_idMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="medicosavaliacoes">
+          <End Type="Dominio.medicos" Role="medicos" Multiplicity="1" />
+          <End Type="Dominio.avaliacoes" Role="avaliacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="medicos">
+              <PropertyRef Name="idMedico" />
+            </Principal>
+            <Dependent Role="avaliacoes">
+              <PropertyRef Name="medicos_idMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="especialidadesmedicos">
+          <End Type="Dominio.especialidades" Role="especialidades" Multiplicity="1" />
+          <End Type="Dominio.medicos" Role="medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="especialidades">
+              <PropertyRef Name="idEspecialidade" />
+            </Principal>
+            <Dependent Role="medicos">
+              <PropertyRef Name="especialidades_idEspecialidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clinicascontasBancarias">
+          <End Type="Dominio.clinicas" Role="clinicas" Multiplicity="1" />
+          <End Type="Dominio.contasBancarias" Role="contasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicas">
+              <PropertyRef Name="idClinica" />
+            </Principal>
+            <Dependent Role="contasBancarias">
+              <PropertyRef Name="clinicas_idClinica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clinicasconsultas">
+          <End Type="Dominio.clinicas" Role="clinicas" Multiplicity="1" />
+          <End Type="Dominio.consultas" Role="consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicas">
+              <PropertyRef Name="idClinica" />
+            </Principal>
+            <Dependent Role="consultas">
+              <PropertyRef Name="clinicas_idClinica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="contasBancariaspagamentos">
+          <End Type="Dominio.contasBancarias" Role="contasBancarias" Multiplicity="1" />
+          <End Type="Dominio.pagamentos" Role="pagamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contasBancarias">
+              <PropertyRef Name="idContasBancarias" />
+            </Principal>
+            <Dependent Role="pagamentos">
+              <PropertyRef Name="contasBancarias_idContasBancarias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clinicasmedicos">
+          <End Type="Dominio.clinicas" Role="clinicas" Multiplicity="1" />
+          <End Type="Dominio.medicos" Role="medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicas">
+              <PropertyRef Name="idClinica" />
+            </Principal>
+            <Dependent Role="medicos">
+              <PropertyRef Name="clinicas_idClinica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="principal_id" Nullable="false" Type="Int32" />
+          <Property Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" MaxLength="Max" FixedLength="false" Type="Binary" />
+        </EntityType>
+        <EntityType Name="agenda">
+          <Key>
+            <PropertyRef Name="idAgenda" />
+          </Key>
+          <Property Name="idAgenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="horarioAtendimento" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="horarioAgendado" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="medicos" Relationship="Dominio.medicosagenda" FromRole="agenda" ToRole="medicos" />
+          <Property Name="medicos_idMedico" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="medicosagenda">
+          <End Type="Dominio.medicos" Role="medicos" Multiplicity="1" />
+          <End Type="Dominio.agenda" Role="agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="medicos">
+              <PropertyRef Name="idMedico" />
+            </Principal>
+            <Dependent Role="agenda">
+              <PropertyRef Name="medicos_idMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pacientesavaliacoes">
+          <End Type="Dominio.pacientes" Role="pacientes" Multiplicity="1" />
+          <End Type="Dominio.avaliacoes" Role="avaliacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacientes">
+              <PropertyRef Name="idPaciente" />
+            </Principal>
+            <Dependent Role="avaliacoes">
+              <PropertyRef Name="pacientes_idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DominioStoreContainer" CdmEntityContainer="DominioContainer">
+    <EntitySetMapping Name="pacientesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.pacientes)">
+        <MappingFragment StoreEntitySet="pacientesSet">
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="celular" ColumnName="celular" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="convenios_idConvenio" ColumnName="convenios_idConvenio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="medicosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.medicos)">
+        <MappingFragment StoreEntitySet="medicosSet">
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="preco" ColumnName="preco" />
+          <ScalarProperty Name="situacao" ColumnName="situacao" />
+          <ScalarProperty Name="especialidades_idEspecialidade" ColumnName="especialidades_idEspecialidade" />
+          <ScalarProperty Name="clinicas_idClinica" ColumnName="clinicas_idClinica" />
+          <ScalarProperty Name="adm" ColumnName="adm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.clinicas)">
+        <MappingFragment StoreEntitySet="clinicasSet">
+          <ScalarProperty Name="idClinica" ColumnName="idClinica" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="estadoClinica" ColumnName="estadoClinica" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="hrAtendimento" ColumnName="hrAtendimento" />
+          <ScalarProperty Name="duracaoConsultas" ColumnName="duracaoConsultas" />
+          <ScalarProperty Name="especialidades" ColumnName="especialidades" />
+          <ScalarProperty Name="convenios" ColumnName="convenios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pagamentosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.pagamentos)">
+        <MappingFragment StoreEntitySet="pagamentosSet">
+          <ScalarProperty Name="idPagamento" ColumnName="idPagamento" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="descontos" ColumnName="descontos" />
+          <ScalarProperty Name="consultas_idConsulta" ColumnName="consultas_idConsulta" />
+          <ScalarProperty Name="contasBancarias_idContasBancarias" ColumnName="contasBancarias_idContasBancarias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conveniosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.convenios)">
+        <MappingFragment StoreEntitySet="conveniosSet">
+          <ScalarProperty Name="idConvenio" ColumnName="idConvenio" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="consultasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.consultas)">
+        <MappingFragment StoreEntitySet="consultasSet">
+          <ScalarProperty Name="idConsulta" ColumnName="idConsulta" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="horario" ColumnName="horario" />
+          <ScalarProperty Name="check_in" ColumnName="check_in" />
+          <ScalarProperty Name="check_out" ColumnName="check_out" />
+          <ScalarProperty Name="pacientes_idPaciente" ColumnName="pacientes_idPaciente" />
+          <ScalarProperty Name="medicos_idMedico" ColumnName="medicos_idMedico" />
+          <ScalarProperty Name="clinicas_idClinica" ColumnName="clinicas_idClinica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="especialidadesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.especialidades)">
+        <MappingFragment StoreEntitySet="especialidadesSet">
+          <ScalarProperty Name="idEspecialidade" ColumnName="idEspecialidade" />
+          <ScalarProperty Name="ds_especialidade" ColumnName="ds_especialidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="avaliacoes">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.avaliacoes)">
+        <MappingFragment StoreEntitySet="avaliacoes">
+          <ScalarProperty Name="idAvaliacao" ColumnName="idAvaliacao" />
+          <ScalarProperty Name="notas" ColumnName="notas" />
+          <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+          <ScalarProperty Name="media" ColumnName="media" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="medicos_idMedico" ColumnName="medicos_idMedico" />
+          <ScalarProperty Name="pacientes_idPaciente" ColumnName="pacientes_idPaciente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contasBancariasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.contasBancarias)">
+        <MappingFragment StoreEntitySet="contasBancariasSet">
+          <ScalarProperty Name="idContasBancarias" ColumnName="idContasBancarias" />
+          <ScalarProperty Name="agencia" ColumnName="agencia" />
+          <ScalarProperty Name="digitoAgencia" ColumnName="digitoAgencia" />
+          <ScalarProperty Name="cedente" ColumnName="cedente" />
+          <ScalarProperty Name="digitoCedente" ColumnName="digitoCedente" />
+          <ScalarProperty Name="carteira" ColumnName="carteira" />
+          <ScalarProperty Name="contrato" ColumnName="contrato" />
+          <ScalarProperty Name="convenio" ColumnName="convenio" />
+          <ScalarProperty Name="clinicas_idClinica" ColumnName="clinicas_idClinica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agendaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Dominio.agenda)">
+        <MappingFragment StoreEntitySet="agendaSet">
+          <ScalarProperty Name="idAgenda" ColumnName="idAgenda" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="horarioAtendimento" ColumnName="horarioAtendimento" />
+          <ScalarProperty Name="horarioAgendado" ColumnName="horarioAgendado" />
+          <ScalarProperty Name="medicos_idMedico" ColumnName="medicos_idMedico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

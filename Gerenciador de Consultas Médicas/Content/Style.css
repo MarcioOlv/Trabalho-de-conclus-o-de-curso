@@ -1,0 +1,63 @@
+﻿#menu{
+    background-color: #26A69A;
+}
+
+#menu a{
+    color: white;
+    font-family:Zapf Chancery, cursive;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 100%;
+    font-family: Zapf Chancery, cursive;
+}
+
+footer {
+    padding: 32px;
+    bottom:0;
+}
+
+footer #text{
+    font-family: Zapf Chancery, cursive;
+    color: black;
+}
+
+
+#myCarousel img{
+    width:100%;
+    padding-left:0%;
+    height:600px;   
+    border-radius:14px;
+}
+
+#myCarousel h3{
+    font-family: Zapf Chancery, cursive;
+    font-weight:500;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    font-size: 28px;
+}
+
+#myCarousel p{
+    font-family: Zapf Chancery, cursive;
+    font-weight:500;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+input,
+select {
+    max-width: 280px;
+}
+
+.book {
+    background-image: url('Imagens/trash.png');
+}
+
+#agenda{
+    position: relative;
+    margin-left: 150px;
+}

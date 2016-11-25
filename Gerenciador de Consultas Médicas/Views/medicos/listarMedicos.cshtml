@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Gerenciador_de_Consultas_Médicas.Models.perfilMedicoViewModel>
+
+@{
+    ViewBag.Title = "listarMedicos";
+}
+
+<h2>Lista de médicos</h2>
+<br />
+<div>
+    @foreach (var item in Model)
+    {
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.nome)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.emailMedico)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.emailMedico)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.preco)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.preco)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.especialidade)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.especialidade)
+                </dd>
+            </dl>
+            <div id="agenda">
+                @*@Html.ActionLink("Agenda", "verificarAgenda", null, new { @class= "btn btn-info", idMedico = item.idMedico })*@
+                @Html.ActionLink("Agenda", "verificarAgenda", new { idMedico = item.idMedico }, new { @class = "btn btn-info" })
+            </div>
+            <br />
+            <div id="avals">
+                @{Html.RenderAction("Index", "avaliacoes", new { idMedico = item.idMedico });}
+            </div>
+        </div>
+                    }
+</div>
+<br />
