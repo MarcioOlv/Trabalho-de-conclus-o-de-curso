@@ -15,13 +15,15 @@ namespace Gerenciador_de_Consultas_Médicas.Models
     
     public partial class DominioContainer : DbContext
     {
+        //BD local
         public DominioContainer()
             : base("name=DominioContainer")
         {
         }
 
+        //BD contratado
         //public DominioContainer()
-        //    : base("name=rhmssql03.clinicatcc.dbo")
+        //    : base("name=clinicatccEntities")
         //{
         //}
 

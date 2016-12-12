@@ -13,9 +13,14 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
     {
         private DominioContainer db = new DominioContainer();
 
+        //variavel global que possui a data de hoje
+        DateTime checkDate = DateTime.Now.Date;
+        
         // GET: agenda
         public ActionResult Index(int? page)
         {
+            deletarAgendaAntiga();
+            
             int id = Convert.ToInt16(Session["idUsuario"]);
             var agendaSet = db.agendaSet.Where(a => a.medicos_idMedico == id && a.horarioAgendado != "Check-out realizado").OrderBy(a => a.data);
 
@@ -87,6 +92,21 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
 
             return RedirectToAction("confirmarConsulta", "consultas", marcar);
         }
+        
+        public void deletarAgendaAntiga()
+        {
+            var today = DateTime.Now;
+            var agenda = db.agendaSet.ToList().
+                Where(a => a.horarioAgendado == null && Convert.ToDateTime(a.data) < today).OrderBy(a => a.data);
+
+            if (!agenda.Any())
+                return;
+
+            foreach(var a in agenda)
+                db.agendaSet.Remove(a);
+
+            db.SaveChanges();
+        }
 
         public ActionResult IndexAdm(agendaMedicoViewModel idMed)
         {
@@ -123,7 +143,9 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(agendaMedicoViewModel dadosAgenda)
-        {//[Bind(Include = "idAgenda,diasSemana,horarioAtendimento,medicos_idMedico")] 
+        {
+
+            deletarAgendaAntiga();
 
             var inicio = dadosAgenda.inicioAtendimento;
             var fim = dadosAgenda.fimAtendimento;
@@ -146,7 +168,6 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                 return RedirectToAction("Index");
             }
             
-            //ViewBag.medicos_idMedico = new SelectList(db.medicosSet, "idMedico", "nome", agenda.medicos_idMedico);
             return View(dadosAgenda);
         }
 
@@ -172,7 +193,7 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(agenda agenda)
-        {//[Bind(Include = "idAgenda,diasSemana,horarioAtendimento,horarioAgendado,medicos_idMedico")]
+        {
             int id = Convert.ToInt16(Session["idUsuario"]);
             agenda.medicos_idMedico = id;
             if (ModelState.IsValid)
