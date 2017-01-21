@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/12/2016 16:04:00
+-- Date Created: 12/12/2016 21:11:28
 -- Generated from EDMX file: C:\Users\marci\Documents\Visual Studio 2015\Projects\Gerenciador de Consultas Médicas\Gerenciador de Consultas Médicas\Models\Dominio.edmx
 -- --------------------------------------------------
 
@@ -46,6 +46,9 @@ IF OBJECT_ID(N'[dbo].[FK_clinicasmedicos]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_medicosagenda]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[agendaSet] DROP CONSTRAINT [FK_medicosagenda];
+GO
+IF OBJECT_ID(N'[dbo].[FK_pacientesavaliacoes]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[avaliacoes] DROP CONSTRAINT [FK_pacientesavaliacoes];
 GO
 
 -- --------------------------------------------------
@@ -136,7 +139,7 @@ CREATE TABLE [dbo].[clinicasSet] (
     [telefone] nvarchar(max)  NOT NULL,
     [fax] nvarchar(max)  NULL,
     [hrAtendimento] varchar(30)  NULL,
-    [duracaoConsultas] nvarchar(max)  NOT NULL,
+    [duracaoConsultas] int  NOT NULL,
     [especialidades] nvarchar(max)  NOT NULL,
     [convenios] varchar(50)  NULL
 );

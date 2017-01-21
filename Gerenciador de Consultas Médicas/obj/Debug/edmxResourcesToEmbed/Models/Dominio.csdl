@@ -113,7 +113,7 @@
     <Property Name="telefone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="fax" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="hrAtendimento" Type="String" Nullable="true" MaxLength="30" Unicode="false" FixedLength="false" />
-    <Property Name="duracaoConsultas" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="duracaoConsultas" Type="Int32" Nullable="false" />
     <NavigationProperty Name="contasBancarias" Relationship="Dominio.clinicascontasBancarias" FromRole="clinicas" ToRole="contasBancarias" />
     <NavigationProperty Name="consultas" Relationship="Dominio.clinicasconsultas" FromRole="clinicas" ToRole="consultas" />
     <Property Name="especialidades" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />

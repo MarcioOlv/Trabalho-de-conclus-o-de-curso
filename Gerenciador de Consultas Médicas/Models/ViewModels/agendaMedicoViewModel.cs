@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Foolproof;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Gerenciador_de_Consultas_Médicas.Models
 {
-    public class PacientesViewModel
+    public class agendaMedicoViewModel
     {
-
         [Key]
         public int idPaciente { get; set; }
 
@@ -59,5 +60,6 @@ namespace Gerenciador_de_Consultas_Médicas.Models
 
         [Display(Name = "Convênio")]
         public virtual convenios convenios { get; set; }
+
     }
 }

@@ -12,26 +12,38 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
     public class agendaController : Controller
     {
         private DominioContainer db = new DominioContainer();
-
-        //variavel global que possui a data de hoje
-        DateTime checkDate = DateTime.Now.Date;
         
         // GET: agenda
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? idMedico, int? page)
         {
             deletarAgendaAntiga();
-            
-            int id = Convert.ToInt16(Session["idUsuario"]);
-            var agendaSet = db.agendaSet.Where(a => a.medicos_idMedico == id && a.horarioAgendado != "Check-out realizado").OrderBy(a => a.data);
 
             //quantidade de itens
             int pageSize = 10;
             //numero da pag, se for nulo retorna 1
             int pageNumber = (page ?? 1);
 
+            if (idMedico == null)
+            {
+                idMedico = Convert.ToInt16(Session["idUsuario"]);
+            }
+            
+            var agendaSet = db.agendaSet.Where(a => a.medicos_idMedico == idMedico && a.horarioAgendado != "Check-out realizado").
+            OrderByDescending(a => a.horarioAgendado).ThenBy(a => a.data);
+
+            ViewBag.idMedico = idMedico;
+
             return View(agendaSet.ToPagedList(pageNumber, pageSize));
+            
         }
 
+        //Index de quando o Adm da clínica chama
+        public ActionResult IndexAdm(agendaMedicoCadastroViewModel idMed)
+        {
+            int id = idMed.idMedico;
+
+            return RedirectToAction("Index", new { idMedico = id });
+        }
 
         public ActionResult verificarAgenda(infParaAgendaEConsultaViewModel medico,int? idMedico, int? page)
         {
@@ -95,7 +107,8 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         
         public void deletarAgendaAntiga()
         {
-            var today = DateTime.Now;
+            var dateAndTime = DateTime.Now;
+            var today = dateAndTime.Date;
             var agenda = db.agendaSet.ToList().
                 Where(a => a.horarioAgendado == null && Convert.ToDateTime(a.data) < today).OrderBy(a => a.data);
 
@@ -108,11 +121,6 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
             db.SaveChanges();
         }
 
-        public ActionResult IndexAdm(agendaMedicoViewModel idMed)
-        {
-            var agendaSet = db.agendaSet.Where(a => a.medicos_idMedico == idMed.idMedico && a.horarioAgendado != "Check-out realizado");
-            return View("Index", agendaSet);
-        }
 
         // GET: agenda/Details/5
         public ActionResult Details(int? id)
@@ -142,19 +150,19 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(agendaMedicoViewModel dadosAgenda)
+        public ActionResult Create(agendaMedicoCadastroViewModel dadosAgenda)
         {
-
-            deletarAgendaAntiga();
-
             var inicio = dadosAgenda.inicioAtendimento;
             var fim = dadosAgenda.fimAtendimento;
-            TimeSpan intervalo = TimeSpan.FromMinutes(30);
 
             int id = Convert.ToInt16(Session["idUsuario"]);
             agenda agenda = new agenda();
             agenda.medicos_idMedico = id;
             agenda.data = dadosAgenda.data;
+
+            int idClinica = Convert.ToInt16(Session["idClinica"]);
+            var duracaoConsultas = db.clinicasSet.Where(c => c.idClinica == idClinica).Select(c => c.duracaoConsultas).Single();
+            TimeSpan intervalo = TimeSpan.FromMinutes(duracaoConsultas);
 
             if (ModelState.IsValid && inicio < fim)
             {
@@ -165,7 +173,7 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                     db.agendaSet.Add(agenda);
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", dadosAgenda.idMedico);
             }
             
             return View(dadosAgenda);
@@ -179,11 +187,12 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             agenda agenda = db.agendaSet.Find(id);
+            
             if (agenda == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.medicos_idMedico = new SelectList(db.medicosSet, "idMedico", "nome", agenda.medicos_idMedico);
+            
             return View(agenda);
         }
 
@@ -200,9 +209,9 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
             {
                 db.Entry(agenda).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", agenda.medicos_idMedico);
             }
-            ViewBag.medicos_idMedico = new SelectList(db.medicosSet, "idMedico", "nome", agenda.medicos_idMedico);
+            
             return View(agenda);
         }
 
@@ -229,7 +238,7 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
             agenda agenda = db.agendaSet.Find(id);
             db.agendaSet.Remove(agenda);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", agenda.medicos_idMedico);
         }
 
         protected override void Dispose(bool disposing)

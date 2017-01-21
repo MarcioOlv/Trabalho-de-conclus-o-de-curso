@@ -74,17 +74,16 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(infAvaliacaoViewModel avaliacao)
-        {//[Bind(Include = "idAvaliacao,notas,comentarios,media,data,medicos_idMedico")] 
+        {
             if (ModelState.IsValid)
             {
                 var qtdAvals = db.avaliacoes.Count(q => q.medicos_idMedico == avaliacao.idMedico);
                 
                 if (qtdAvals != 0)
                 {
-                    //erro => quando retorna mais de um
-                    var somaNotas = db.avaliacoes.Where(m => m.medicos_idMedico == avaliacao.idMedico).GroupBy(m => m.medicos_idMedico).Select(n => n.Sum(m => m.notas)).Single();
-                    //var somaNotas = db.avaliacoes.GroupBy(m => m.medicos_idMedico).Select(n => n.Sum(m => m.notas)).Single();
-                    //
+                    var somaNotas = db.avaliacoes.Where(m => m.medicos_idMedico == avaliacao.idMedico).
+                        GroupBy(m => m.medicos_idMedico).Select(n => n.Sum(m => m.notas)).Single();
+                    
                     int total = Convert.ToInt16(somaNotas);
                     total += avaliacao.nota;
                     qtdAvals++;

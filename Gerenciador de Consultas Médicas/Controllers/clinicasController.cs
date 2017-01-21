@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using Gerenciador_de_Consultas_Médicas.Models;
 using static System.Net.Mime.MediaTypeNames;
+using Gerenciador_de_Consultas_Médicas.Models.ViewModels;
+using System.Collections;
+using System.Text;
 
 namespace Gerenciador_de_Consultas_Médicas.Controllers
 {
@@ -41,8 +44,10 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         // GET: clinicas/Create
         public ActionResult Create()
         {
+            ViewBag.listaEstados = listaEstados();
             ViewBag.ds_especialidades = new MultiSelectList(db.especialidadesSet, "ds_especialidade", "ds_especialidade");
             ViewBag.ds_convenios = new MultiSelectList(db.conveniosSet, "descricao", "descricao");
+            
             return View();
         }
 
@@ -51,9 +56,42 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idClinica,nome,cnpj,endereco,complemento,bairro,cep,cidade,estadoClinica,email,telefone,fax,hrAtendimento,duracaoConsultas,especialidades,convenios")] clinicas clinicas)
+        public ActionResult Create(clinicas clinicas,string[] listaEspecialidades, string[] listaConvenios)
         {
-            if (ModelState.IsValid)
+            //[Bind(Include = "idClinica,nome,cnpj,endereco,complemento,bairro,cep,cidade,estadoClinica,email,telefone,fax,hrAtendimento,duracaoConsultas,especialidades,ds_convenios")]
+            if (listaConvenios != null)
+            {
+                StringBuilder convenios = new StringBuilder();
+                var ultimoCon = listaConvenios.Last();
+                foreach (var convenio in listaConvenios)
+                {
+                    convenios.Append(convenio);
+                    if (!convenio.Equals(ultimoCon))
+                    {
+                        convenios.Append(", ");
+                    }
+                }
+                clinicas.convenios = Convert.ToString(convenios);
+            }
+
+            if (listaEspecialidades != null)
+            {
+                StringBuilder especialidades = new StringBuilder();
+                var ultimaEsp = listaEspecialidades.Last();
+                foreach (var especialidade in listaEspecialidades)
+                {
+                    especialidades.Append(especialidade);
+                    if (!especialidade.Equals(ultimaEsp))
+                    {
+                        especialidades.Append(", ");
+                    }
+                }
+                clinicas.especialidades = Convert.ToString(especialidades);
+            }
+            
+            ModelState.Clear();
+            
+            if (TryValidateModel(clinicas))
             {
                 db.clinicasSet.Add(clinicas);
                 db.SaveChanges();
@@ -61,6 +99,9 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                 return RedirectToAction("Create", "medicos");
             }
 
+            ViewBag.ds_especialidades = new MultiSelectList(db.especialidadesSet, "ds_especialidade", "ds_especialidade");
+            ViewBag.ds_convenios = new MultiSelectList(db.conveniosSet, "descricao", "descricao");
+            ViewBag.listaEstados = listaEstados();
             return View(clinicas);
         }
 
@@ -127,7 +168,6 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
             return View("pesquisarClinicas");
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult pesquisarClinicas(ClinicasPacMedViewModel clinica)
@@ -148,7 +188,7 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                                     telefoneClinica = c.telefone,
                                     hrAtendimento = c.hrAtendimento,
                                     especialidades = c.especialidades,
-                                    convenios = c.convenios,
+                                    convenios = Convert.ToString(c.convenios),
                                     nomePaciente = p.nome,
                                     enderecoPaciente = p.endereco,
                                     cidadePaciente = p.cidade
@@ -174,6 +214,40 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public IList listaEstados()
+        {
+            List<SelectListItem> estados = new List<SelectListItem>();
+            estados.Add(new SelectListItem() { Text = "AC", Value = "AC" });
+            estados.Add(new SelectListItem() { Text = "AL", Value = "AL" });
+            estados.Add(new SelectListItem() { Text = "AP", Value = "AP" });
+            estados.Add(new SelectListItem() { Text = "AM", Value = "AM" });
+            estados.Add(new SelectListItem() { Text = "BA", Value = "BA" });
+            estados.Add(new SelectListItem() { Text = "CE", Value = "CE" });
+            estados.Add(new SelectListItem() { Text = "DF", Value = "DF" });
+            estados.Add(new SelectListItem() { Text = "ES", Value = "ES" });
+            estados.Add(new SelectListItem() { Text = "GO", Value = "GO" });
+            estados.Add(new SelectListItem() { Text = "MA", Value = "MA" });
+            estados.Add(new SelectListItem() { Text = "MT", Value = "MT" });
+            estados.Add(new SelectListItem() { Text = "MS", Value = "MS" });
+            estados.Add(new SelectListItem() { Text = "MG", Value = "MG" });
+            estados.Add(new SelectListItem() { Text = "PA", Value = "PA" });
+            estados.Add(new SelectListItem() { Text = "PB", Value = "PB" });
+            estados.Add(new SelectListItem() { Text = "PR", Value = "PR" });
+            estados.Add(new SelectListItem() { Text = "PE", Value = "PE" });
+            estados.Add(new SelectListItem() { Text = "PI", Value = "PI" });
+            estados.Add(new SelectListItem() { Text = "RJ", Value = "RJ" });
+            estados.Add(new SelectListItem() { Text = "RN", Value = "RN" });
+            estados.Add(new SelectListItem() { Text = "RS", Value = "RS" });
+            estados.Add(new SelectListItem() { Text = "RO", Value = "RO" });
+            estados.Add(new SelectListItem() { Text = "RR", Value = "RR" });
+            estados.Add(new SelectListItem() { Text = "SC", Value = "SC" });
+            estados.Add(new SelectListItem() { Text = "SP", Value = "SP" });
+            estados.Add(new SelectListItem() { Text = "SE", Value = "SE" });
+            estados.Add(new SelectListItem() { Text = "TO", Value = "TO" });
+
+            return estados;
         }
     }
 }

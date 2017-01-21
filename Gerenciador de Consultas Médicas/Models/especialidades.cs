@@ -20,13 +20,13 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         {
             this.medicos = new HashSet<medicos>();
         }
-    
+
         [Key]
         public int idEspecialidade { get; set; }
 
-        [Display(Name= "Especialidade")]
+        [Display(Name = "Especialidade")]
         public string ds_especialidade { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<medicos> medicos { get; set; }
     }

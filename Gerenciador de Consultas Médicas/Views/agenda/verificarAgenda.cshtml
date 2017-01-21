@@ -40,6 +40,6 @@
 }
 </table>
 
-Págine @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("verificarAgenda", new { idMedico = ViewBag.idMedico, page }))

@@ -25,7 +25,7 @@
         <AssociationConnector Association="Dominio.contasBancariaspagamentos" />
         <AssociationConnector Association="Dominio.clinicasmedicos" />
         <EntityTypeShape EntityType="Dominio.sysdiagrams" PointX="0.75" PointY="7.75" Width="1.5" />
-        <EntityTypeShape EntityType="Dominio.agenda" Width="1.5" PointX="9.875" PointY="3.75" />
+        <EntityTypeShape EntityType="Dominio.agenda" Width="1.5" PointX="10" PointY="4.375" />
         <AssociationConnector Association="Dominio.medicosagenda" />
         <AssociationConnector Association="Dominio.pacientesavaliacoes" />
       </Diagram>

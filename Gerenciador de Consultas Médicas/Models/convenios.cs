@@ -20,12 +20,12 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         {
             this.pacientes = new HashSet<pacientes>();
         }
-    
-        [key]
+
+        [Key]
         public int idConvenio { get; set; }
         [Display(Name = "Convênio")]
         public string descricao { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pacientes> pacientes { get; set; }
     }

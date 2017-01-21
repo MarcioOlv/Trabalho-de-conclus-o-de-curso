@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Gerenciador_de_Consultas_Médicas.Models
 {
@@ -81,21 +82,6 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         public string horarios { get; set; }
     }
 
-    public class agendaMedicoViewModel
-    {
-        public int idMedico { get; set; }
-        [DataType(DataType.Time)]
-        [Display(Name = "Início do atendimento")]
-        public TimeSpan inicioAtendimento { get; set; }
-        [DataType(DataType.Time)]
-        [Display(Name = "Fim do atendimento")]
-        [GreaterThan("inicioAtendimento", ErrorMessage = "O horário de fim deve ser maior que o horário de início")]
-        public TimeSpan fimAtendimento { get; set; }
-        [DataType(DataType.Date)]
-        [Display(Name = "Data")]
-        public string data { get; set; }
-    }
-
     public class perfilMedicoViewModel
     {
         public int idMedico { get; set; }
@@ -117,6 +103,27 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         public DateTime dataAvaliacao { get; set; }
         [Display(Name = "Nome do paciente")]
         public string nomePacAvaliador { get; set; }
+    }
+
+    public class agendaMedicoCadastroViewModel
+    {
+
+        [Key]
+        public int idAgenda { get; set; }
+        public int idMedico { get; set; }
+        [Display(Name = "Horário de atendimento")]
+        [DataType(DataType.Time)]
+        public DateTime horarioAtendimento { get; set; }
+        [DataType(DataType.Time)]
+        [Display(Name = "Início do atendimento")]
+        public TimeSpan inicioAtendimento { get; set; }
+        [DataType(DataType.Time)]
+        [Display(Name = "Fim do atendimento")]
+        [GreaterThan("inicioAtendimento", ErrorMessage = "O horário de fim deve ser maior que o horário de início")]
+        public TimeSpan fimAtendimento { get; set; }
+        [DataType(DataType.Date)]
+        [Display(Name = "Data")]
+        public string data { get; set; }
     }
 
     //usado para cadastrar a avaliaçao

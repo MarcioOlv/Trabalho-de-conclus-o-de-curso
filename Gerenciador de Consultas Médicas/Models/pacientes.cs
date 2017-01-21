@@ -21,8 +21,8 @@ namespace Gerenciador_de_Consultas_Médicas.Models
             this.consultas = new HashSet<consultas>();
             this.avaliacoes = new HashSet<avaliacoes>();
         }
-    
-        [key]
+
+        [Key]
         public int idPaciente { get; set; }
 
         [Display(Name = "Nome")]
@@ -50,10 +50,12 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         public string estado { get; set; }
 
         [Required(ErrorMessage = "Informe seu telefone")]
+        [Phone]
         [Display(Name = "Telefone")]
         public string telefone { get; set; }
 
         [Display(Name = "Celular")]
+        [Phone]
         public string celular { get; set; }
 
         [DataType(DataType.EmailAddress, ErrorMessage = "E-mail inválido")]
@@ -69,12 +71,12 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         [DataType(DataType.Password)]
         [Compare("senha", ErrorMessage = "As senhas não conferem")]
         [Required(ErrorMessage = "Digite a confirmação da senha")]
-        [Display(Name = "Senha")]
-        public string confirmarSenha{ get; set; }
+        [Display(Name = "Confirmar senha")]
+        public string confirmarSenha { get; set; }
 
         [Display(Name = "Convênio")]
         public int convenios_idConvenio { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<consultas> consultas { get; set; }
         public virtual convenios convenios { get; set; }

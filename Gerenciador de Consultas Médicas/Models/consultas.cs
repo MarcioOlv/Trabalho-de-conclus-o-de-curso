@@ -15,10 +15,10 @@ namespace Gerenciador_de_Consultas_Médicas.Models
 
     public partial class consultas
     {
-        [key]
+        [Key]
         public int idConsulta { get; set; }
 
-        [Display(Name="Data da consulta")]
+        [Display(Name = "Data da consulta")]
         public string data { get; set; }
 
         [Display(Name = "Horário")]
@@ -32,7 +32,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         public int pacientes_idPaciente { get; set; }
         public int medicos_idMedico { get; set; }
         public int clinicas_idClinica { get; set; }
-    
+
         public virtual pacientes pacientes { get; set; }
         public virtual medicos medicos { get; set; }
         public virtual clinicas clinicas { get; set; }

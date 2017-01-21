@@ -15,7 +15,6 @@ namespace Gerenciador_de_Consultas_Médicas.Models
     
     public partial class DominioContainer : DbContext
     {
-        //BD local
         public DominioContainer()
             : base("name=DominioContainer")
         {

@@ -15,7 +15,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
 
     public partial class avaliacoes
     {
-        [key]
+        [Key]
         public int idAvaliacao { get; set; }
         [Required(ErrorMessage = "Informe a nota")]
         [Display(Name = "Notas")]
@@ -29,7 +29,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         public System.DateTime data { get; set; }
         public int medicos_idMedico { get; set; }
         public int pacientes_idPaciente { get; set; }
-    
+
         public virtual medicos medicos { get; set; }
         public virtual pacientes pacientes { get; set; }
     }

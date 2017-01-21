@@ -50,7 +50,7 @@
             @Html.ActionLink("Editar", "Edit", new { id=item.idMedico }) |
             @Html.ActionLink("Detalhes", "Details", new { id=item.idMedico }) |
             @Html.ActionLink("Excluir", "Delete", new { id=item.idMedico }) |
-            @Html.ActionLink("Agenda", "criarAgenda", new { id = item.idMedico })
+            @Html.ActionLink("Agenda", "verAgenda", new { idMedico = item.idMedico })
         </td>
     </tr>
 }

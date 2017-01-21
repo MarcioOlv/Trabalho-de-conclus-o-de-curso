@@ -12,6 +12,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class clinicas
     {
@@ -22,8 +23,8 @@ namespace Gerenciador_de_Consultas_Médicas.Models
             this.consultas = new HashSet<consultas>();
             this.medicos = new HashSet<medicos>();
         }
-    
-        [key]
+
+        [Key]
         public int idClinica { get; set; }
 
         [Display(Name = "Nome")]
@@ -64,6 +65,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
 
         [Required(ErrorMessage = "Informe o telefone")]
         [Display(Name = "Telefone")]
+        [Phone]
         public string telefone { get; set; }
 
         [Display(Name = "Fax")]
@@ -75,7 +77,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
 
         [Required(ErrorMessage = "Informe a duração da consulta")]
         [Display(Name = "Duração das consultas")]
-        public string duracaoConsultas { get; set; }
+        public int duracaoConsultas { get; set; }
 
         [Required(ErrorMessage = "Informe a(s) especialidade(s)")]
         [Display(Name = "Especialidade")]
@@ -84,7 +86,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         [Required(ErrorMessage = "Informe o convênio")]
         [Display(Name = "Convênio")]
         public string convenios { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<contasBancarias> contasBancarias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

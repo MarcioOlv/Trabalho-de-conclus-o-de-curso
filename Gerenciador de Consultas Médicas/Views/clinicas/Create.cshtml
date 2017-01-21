@@ -73,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.estadoClinica, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.estadoClinica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.estadoClinica , (IEnumerable<SelectListItem>)ViewBag.listaEstados, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.estadoClinica, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -121,7 +121,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.especialidades, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.especialidades, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ListBox("listaEspecialidades", (MultiSelectList)ViewBag.ds_especialidades, htmlAttributes : new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.especialidades, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -129,11 +129,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.convenios, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.convenios, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ListBox("listaConvenios", (MultiSelectList)ViewBag.ds_convenios, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.convenios, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Cadastrar" class="btn btn-default" />
@@ -141,4 +140,3 @@
         </div>
     </div>
 }
-

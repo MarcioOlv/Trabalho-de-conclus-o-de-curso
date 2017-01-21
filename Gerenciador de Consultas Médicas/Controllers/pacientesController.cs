@@ -17,6 +17,7 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         // GET: pacientes
         public ActionResult Index()
         {
+            
             int id = Convert.ToInt16(Session["idUsuario"]);
             var pacientesSet = db.pacientesSet.Where(p => p.idPaciente == id);
             return View(pacientesSet);
@@ -41,6 +42,9 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         // GET: pacientes/Create
         public ActionResult Create()
         {
+            clinicasController estados = new clinicasController();
+
+            ViewBag.listaEstados = estados.listaEstados();
             ViewBag.convenios = new SelectList(db.conveniosSet, "idConvenio", "descricao");
             return View();
         }
@@ -50,8 +54,7 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(pacientes pacientes)
-            //[Bind(Include = "idPaciente,nome,cpf,endereco,cidade,estado,telefone,celular,email,senha,convenios_idConvenio")]
+        public ActionResult Create(pacientes pacientes, string[] estado)
         {
             try
             {
@@ -67,6 +70,9 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                 throw;
             }
 
+            clinicasController estados = new clinicasController();
+
+            ViewBag.listaEstados = estados.listaEstados();
             ViewBag.convenios_idConvenio = new SelectList(db.conveniosSet, "idConvenio", "descricao", pacientes.convenios_idConvenio);
             return View(pacientes);
         }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Gerenciador_de_Consultas_Médicas;
 using Gerenciador_de_Consultas_Médicas.Models;
+using Gerenciador_de_Consultas_Médicas.Models.ViewModels;
 
 namespace Gerenciador_de_Consultas_Médicas.Mappers
 {
@@ -14,9 +15,9 @@ namespace Gerenciador_de_Consultas_Médicas.Mappers
             }
         }
 
-        //protected override void Configure()
-        //{
-        //    Mapper.CreateMap<PacientesViewModel, pacientes>();
-        //}
+        protected override void Configure()
+        {
+            //Mapper.CreateMap<AgendaViewModel, agenda>();
+        }
     }
 }

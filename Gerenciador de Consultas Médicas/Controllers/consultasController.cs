@@ -17,6 +17,9 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
         // GET: consultas
         public ActionResult Index()
         {
+            agendaController agenda = new agendaController();
+            agenda.deletarAgendaAntiga();
+
             var idUsuario = Convert.ToInt16(Session["idUsuario"]);
             var consultasSet = db.consultasSet.Where(c => c.pacientes_idPaciente == idUsuario && c.check_out != 1);
             return View(consultasSet.ToList());

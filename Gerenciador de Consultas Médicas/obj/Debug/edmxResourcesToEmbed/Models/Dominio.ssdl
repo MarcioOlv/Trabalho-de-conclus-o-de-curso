@@ -105,7 +105,7 @@
     <Property Name="telefone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="fax" Type="nvarchar(max)" Nullable="true" />
     <Property Name="hrAtendimento" Type="varchar" Nullable="true" MaxLength="30" />
-    <Property Name="duracaoConsultas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="duracaoConsultas" Type="int" Nullable="false" />
     <Property Name="especialidades" Type="nvarchar(max)" Nullable="false" />
     <Property Name="convenios" Type="varchar" Nullable="true" MaxLength="50" />
   </EntityType>

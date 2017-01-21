@@ -78,10 +78,8 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                 else
                     return View("_LayoutCadastroRealizado");
             }
-
-            //ViewBag.especialidades_idEspecialidade = new SelectList(db.especialidadesSet, "idEspecialidade", "ds_especialidade", medicos.especialidades_idEspecialidade);
+            
             ViewBag.especialidades_idEspecialidade = new SelectList(db.especialidadesSet, "idEspecialidade", "ds_especialidade");
-            ViewBag.clinicas_idClinica = new SelectList(db.clinicasSet, "idClinica", "nome", medicos.clinicas_idClinica);
             return View(medicos);
         }
 
@@ -124,10 +122,8 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
            
             ViewBag.especialidades_idEspecialidade = new SelectList(db.especialidadesSet, "idEspecialidade", "ds_especialidade", medicos.especialidades_idEspecialidade);
-            ViewBag.clinicas_idClinica = new SelectList(db.clinicasSet, "idClinica", "nome", medicos.clinicas_idClinica);
             return View(medicos);
         }
 
@@ -165,28 +161,22 @@ namespace Gerenciador_de_Consultas_Médicas.Controllers
                          where m.clinicas_idClinica == cli.idClinica
                          from e in db.especialidadesSet
                          where e.idEspecialidade == m.especialidades_idEspecialidade
-                         //group m by m.nome into z
-                         //from a in db.agendaSet
-                         //where a.medicos_idMedico == m.idMedico && a.horarioAgendado == null
                          select new perfilMedicoViewModel
                          {
-                             //idClinica = m.clinicas_idClinica,
                              idMedico = m.idMedico,
                              nome = m.nome,
                              especialidade = e.ds_especialidade,
                              preco = m.preco,
                              emailMedico = m.email
-                             //data = a.data,
-                             //horarios = a.horarioAtendimento
                          });
 
             return View(query.ToList());
         }
 
-        public ActionResult criarAgenda(int id)
+        public ActionResult verAgenda(int idMedico)
         {
-            agendaMedicoViewModel idMed = new agendaMedicoViewModel();
-            idMed.idMedico = id;
+            agendaMedicoCadastroViewModel idMed = new agendaMedicoCadastroViewModel();
+            idMed.idMedico = idMedico;
 
             return RedirectToAction("IndexAdm", "agenda", idMed);
         }

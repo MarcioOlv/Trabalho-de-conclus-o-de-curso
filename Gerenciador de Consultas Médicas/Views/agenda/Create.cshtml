@@ -1,4 +1,4 @@
-﻿@model Gerenciador_de_Consultas_Médicas.Models.agendaMedicoViewModel
+﻿@model Gerenciador_de_Consultas_Médicas.Models.agendaMedicoCadastroViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -47,5 +47,5 @@
 }
 
 <div>
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink("Voltar", null, null, null, new {href = Request.UrlReferrer})
 </div>

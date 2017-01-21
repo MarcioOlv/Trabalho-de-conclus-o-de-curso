@@ -22,8 +22,8 @@ namespace Gerenciador_de_Consultas_Médicas.Models
             this.avaliacoes = new HashSet<avaliacoes>();
             this.agenda = new HashSet<agenda>();
         }
-    
-        [key]
+
+        [Key]
         public int idMedico { get; set; }
 
         [Required(ErrorMessage = "Informe seu nome")]
@@ -43,9 +43,10 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Confirme a senha")]
         [Display(Name = "Confirmar senha")]
-        [Compare("senha", ErrorMessage ="As senhas não conferem")]
-        public string confirmarSenha{ get; set; }
+        [Compare("senha", ErrorMessage = "As senhas não conferem")]
+        public string confirmarSenha { get; set; }
 
+        [DataType(DataType.Currency)]
         [Display(Name = "Preço")]
         public string preco { get; set; }
 
@@ -58,7 +59,7 @@ namespace Gerenciador_de_Consultas_Médicas.Models
         [Display(Name = "Clínica")]
         public int clinicas_idClinica { get; set; }
         public short adm { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<consultas> consultas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
